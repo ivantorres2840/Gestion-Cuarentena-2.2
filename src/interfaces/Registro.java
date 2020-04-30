@@ -59,35 +59,35 @@ public class Registro extends JFrame {
 				.getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
 		vPersona = IOdatos.cargarpersona();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 365, 498);
+		setBounds(100, 100, 351, 507);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("REGISTRO");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(10, 11, 329, 27);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(67, 122, 67, 21);
+		lblNewLabel_1.setBounds(49, 122, 67, 21);
 		contentPane.add(lblNewLabel_1);
 
 		txtnombre = new JTextField();
-		txtnombre.setBounds(153, 123, 171, 20);
+		txtnombre.setBounds(138, 123, 171, 20);
 		contentPane.add(txtnombre);
 		txtnombre.setColumns(10);
 
 		JLabel lblNewLabel_1_1 = new JLabel("DNI");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_1_1.setBounds(67, 169, 67, 21);
+		lblNewLabel_1_1.setBounds(49, 169, 67, 21);
 		contentPane.add(lblNewLabel_1_1);
 
 		txtdni = new JTextField();
-		txtdni.setBounds(153, 170, 171, 20);
+		txtdni.setBounds(138, 170, 171, 20);
 		contentPane.add(txtdni);
 		txtdni.setColumns(10);
 
@@ -105,13 +105,15 @@ public class Registro extends JFrame {
 		 */
 
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnVolver.addMouseListener(new BtnVolverMouseListener());
-		btnVolver.setBounds(67, 351, 89, 23);
+		btnVolver.setBounds(49, 351, 89, 23);
 		contentPane.add(btnVolver);
 
 		JButton btnaceptar = new JButton("Aceptar Registro");
+		btnaceptar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnaceptar.addMouseListener(new BtnNewButtonMouseListener());
-		btnaceptar.setBounds(177, 351, 147, 23);
+		btnaceptar.setBounds(162, 351, 147, 23);
 		contentPane.add(btnaceptar);
 
 		txtdni = new JTextField();
@@ -125,13 +127,15 @@ public class Registro extends JFrame {
 		txtnombre.setColumns(10);
 
 		rdbtnpolicia = new JRadioButton("Policia");
+		rdbtnpolicia.setFont(new Font("Tahoma", Font.BOLD, 13));
 		buttonGroup.add(rdbtnpolicia);
-		rdbtnpolicia.setBounds(67, 241, 89, 23);
+		rdbtnpolicia.setBounds(67, 255, 89, 23);
 		contentPane.add(rdbtnpolicia);
 
 		JRadioButton rdbtnCiudadano = new JRadioButton("Ciudadano");
+		rdbtnCiudadano.setFont(new Font("Tahoma", Font.BOLD, 13));
 		buttonGroup.add(rdbtnCiudadano);
-		rdbtnCiudadano.setBounds(153, 241, 109, 23);
+		rdbtnCiudadano.setBounds(155, 255, 109, 23);
 		contentPane.add(rdbtnCiudadano);
 	}
 

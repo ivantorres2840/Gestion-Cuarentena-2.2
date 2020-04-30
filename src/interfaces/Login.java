@@ -55,26 +55,28 @@ public class Login extends JFrame {
 				.getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
 		vPersona = IOdatos.cargarpersona();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 349, 505);
+		setBounds(100, 100, 351, 509);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("LOGIN");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(10, 11, 313, 33);
 		contentPane.add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Entrar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton.addMouseListener(new BtnNewButtonMouseListener());
 		btnNewButton.setBounds(45, 350, 89, 23);
 		contentPane.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Registrarse");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_1.addMouseListener(new BtnNewButton_1MouseListener());
-		btnNewButton_1.setBounds(172, 350, 107, 23);
+		btnNewButton_1.setBounds(172, 350, 124, 23);
 		contentPane.add(btnNewButton_1);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
@@ -98,12 +100,12 @@ public class Login extends JFrame {
 		 */
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(143, 172, 124, 20);
+		txtNombre.setBounds(143, 172, 153, 20);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtdni = new JTextField();
-		txtdni.setBounds(144, 221, 124, 20);
+		txtdni.setBounds(144, 221, 152, 20);
 		contentPane.add(txtdni);
 		txtdni.setColumns(10);
 
