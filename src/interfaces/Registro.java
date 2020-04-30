@@ -22,6 +22,7 @@ import interfaz.Login;
 import interfaz.Registro.BtnNewButtonMouseListener;
 import interfaz.Registro.BtnVolverMouseListener;
 import javax.swing.ButtonGroup;
+import java.awt.Toolkit;
 
 public class Registro extends JFrame {
 
@@ -51,6 +52,7 @@ public class Registro extends JFrame {
 	 * Create the frame.
 	 */
 	public Registro() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
 		vPersonas = IOdatos.cargarpersona();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 365, 498);

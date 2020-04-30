@@ -21,6 +21,7 @@ import interfaz.InterfazSalida;
 import interfaz.Registro;
 import interfaz.Login.BtnNewButtonMouseListener;
 import interfaz.Login.BtnNewButton_1MouseListener;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -48,6 +49,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
 		vPersona = IOdatos.cargarpersona();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 349, 505);
