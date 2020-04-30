@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Individuos.Ciudadano;
+import Individuos.Persona;
 import Individuos.Policia;
 import IoDatos.IOdatos;
 import interfaz.Login;
@@ -30,6 +32,7 @@ public class Registro extends JFrame {
 	private JTextField txtdni;
 	private JTextField txtnombre;
 	private JRadioButton rdbtnpolicia;
+	private ArrayList<Persona> vPersona;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
@@ -52,8 +55,9 @@ public class Registro extends JFrame {
 	 * Create the frame.
 	 */
 	public Registro() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
-		vPersonas = IOdatos.cargarpersona();
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
+		vPersona = IOdatos.cargarpersona();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 365, 498);
 		contentPane = new JPanel();
@@ -153,14 +157,14 @@ public class Registro extends JFrame {
 
 			if (!(txtnombre.getText().equalsIgnoreCase("") || txtnombre.getText() == null)
 					&& !(txtdni.getText().equalsIgnoreCase("") || txtdni.getText() == null)) {
-				if (rdbtnPolicia.isSelected()) {
+				if (rdbtnpolicia.isSelected()) {
 					Policia poli = new Policia(txtnombre.getText(), txtdni.getText(), ("P-" + txtdni.getText()));
-					vPersonas.add(poli);
-					IOdatos.guardarPers(vPersonas);
+					vPersona.add(poli);
+					IOdatos.guardarPers(vPersona);
 				} else {
 					Ciudadano ciu = new Ciudadano(txtnombre.getText(), txtdni.getText(), ("C-" + txtdni.getText()));
-					vPersonas.add(ciu);
-					IOdatos.guardarPers(vPersonas);
+					vPersona.add(ciu);
+					IOdatos.guardarPers(vPersona);
 				}
 				Login l = new Login();
 				l.setVisible(true);

@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +28,8 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
-	private JTextField txtdnib;
+	private JTextField txtdni;
+	private ArrayList<Persona> vPersona;
 
 	/**
 	 * Launch the application.
@@ -49,7 +51,8 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
 		vPersona = IOdatos.cargarpersona();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 349, 505);
@@ -99,10 +102,10 @@ public class Login extends JFrame {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 
-		txtdnib = new JTextField();
-		txtdnib.setBounds(144, 221, 124, 20);
-		contentPane.add(txtdnib);
-		txtdnib.setColumns(10);
+		txtdni = new JTextField();
+		txtdni.setBounds(144, 221, 124, 20);
+		contentPane.add(txtdni);
+		txtdni.setColumns(10);
 
 	}
 
