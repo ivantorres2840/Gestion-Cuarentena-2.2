@@ -1,4 +1,4 @@
-package principal;
+package Interfaces;
 
 public class Inicio {
 
