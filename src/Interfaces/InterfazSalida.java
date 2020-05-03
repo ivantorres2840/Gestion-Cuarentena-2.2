@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
@@ -70,11 +71,13 @@ public class InterfazSalida extends JFrame {
 		textAreasalidas.setEditable(false);
 		textAreasalidas.setBounds(25, 120, 428, 145);
 		contentPane.add(textAreasalidas);
+
 		
 		JLabel lblsalidas = new JLabel("Salidas Realizadas");
 		lblsalidas.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblsalidas.setBounds(25, 95, 131, 14);
 		contentPane.add(lblsalidas);
+		
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(270, 510, 183, 22);
