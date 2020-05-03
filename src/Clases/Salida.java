@@ -20,6 +20,17 @@ public class Salida implements Serializable {
 		this.multado = false;
 		this.revisado = false;
 	}
+	
+	public Salida(String motivos, String fecha, String hora, String dni) {
+		this.motivos = motivos;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.dni = dni;
+		this.multado = false;
+		this.revisado = false;
+	}
+	
+	
 
 	public boolean isMultado() {
 		return multado;
