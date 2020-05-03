@@ -11,6 +11,8 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.components.JSpinField;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -181,21 +183,31 @@ public class InterfazSalida extends JFrame {
 				int minutos= (int) spinner_minutos.getValue();
 				String hora_concreta="";
 				
-				if(hora<10 || hora>=0) {
+				if(hora<10 && hora>=0) {
 					hora_concreta="0"+hora+":";
 				}else if (hora!=1) {
 					hora_concreta=hora+":";
 				}
 				
-				if(minutos<10 || minutos>=0) {
-					hora_concreta+="0"+minutos+":";
+				if(minutos<10 && minutos>=0) {
+					hora_concreta+="0"+minutos+"";
 				}else {
 					hora_concreta+=minutos+"";
 				}
 				
-				
-				System.out.println(hora_concreta);
-				System.out.println(fecha);
+				if (comboBox.getSelectedItem().equals("Otros")) {
+					Salidas s = new Salidas(textAreamotivos.getText(), fecha, textFielhora.getText(),
+							textFieldminutos.getText(), dni);
+					JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
+					//vSalida.add(s);
+					//IOdatos.guardarSal(vSalida);
+				} else {
+					Salidas c = new Salidas(comboBox.getSelectedItem().toString(), fecha,
+							textFielhora.getText(), textFieldminutos.getText(), dni);
+					JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
+			//		vSalida.add(c);
+			//		IOdatos.guardarSal(vSalida);
+				}
 				
 			}
 		});
