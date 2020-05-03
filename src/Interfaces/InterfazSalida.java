@@ -29,7 +29,7 @@ public class InterfazSalida extends JFrame {
 	private JPanel contentPane;
 	private DefaultComboBoxModel modeloComboBox = new DefaultComboBoxModel();
 	private String dni;
-	//private ArrayList<Salidas> vSalida;
+	//private ArrayList<Salida> vSalida;
 	//private ArrayList<Persona> vPersona;
 	/**
 	 * Launch the application.
@@ -196,15 +196,13 @@ public class InterfazSalida extends JFrame {
 				}
 				
 				if (comboBox.getSelectedItem().equals("Otros")) {
-					Salidas s = new Salidas(textAreamotivos.getText(), fecha, textFielhora.getText(),
-							textFieldminutos.getText(), dni);
-					JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
+					//Salidas s = new Salidas(textAreamotivos.getText(), fecha,hora_concreta , dni);
+			//		JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
 					//vSalida.add(s);
 					//IOdatos.guardarSal(vSalida);
 				} else {
-					Salidas c = new Salidas(comboBox.getSelectedItem().toString(), fecha,
-							textFielhora.getText(), textFieldminutos.getText(), dni);
-					JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
+					//Salidas c = new Salidas(comboBox.getSelectedItem().toString(), fecha,	hora_concreta, dni);
+			//		JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
 			//		vSalida.add(c);
 			//		IOdatos.guardarSal(vSalida);
 				}
