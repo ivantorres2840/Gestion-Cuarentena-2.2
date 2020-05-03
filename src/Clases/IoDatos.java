@@ -1,5 +1,10 @@
 package Clases;
-
+/**
+ * 
+ * @author Ivan Torres
+ * @version 1.0
+ *
+ */
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

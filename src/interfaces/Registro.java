@@ -6,26 +6,30 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import Individuos.Ciudadano;
-import Individuos.Persona;
-import Individuos.Policia;
-import IoDatos.IOdatos;
-import interfaz.Login;
-import interfaz.Registro.BtnNewButtonMouseListener;
-import interfaz.Registro.BtnVolverMouseListener;
+//import Individuos.Ciudadano;
+//import Individuos.Persona;
+//import Individuos.Policia;
+//import IoDatos.IOdatos;
+//import interfaz.Login;
+//import interfaz.Registro.BtnNewButtonMouseListener;
+//import interfaz.Registro.BtnVolverMouseListener;
 import javax.swing.ButtonGroup;
 import java.awt.Toolkit;
-
+import Clases.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 public class Registro extends JFrame {
 
 	private JPanel contentPane;
@@ -55,9 +59,9 @@ public class Registro extends JFrame {
 	 * Create the frame.
 	 */
 	public Registro() {
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
-		vPersona = IOdatos.cargarpersona();
+//		setIconImage(Toolkit.getDefaultToolkit()
+//				.getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
+		vPersona = IoDatos.cargarpersona();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 351, 507);
 		contentPane = new JPanel();
@@ -111,6 +115,7 @@ public class Registro extends JFrame {
 		contentPane.add(btnVolver);
 
 		JButton btnaceptar = new JButton("Aceptar Registro");
+
 		btnaceptar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnaceptar.addMouseListener(new BtnNewButtonMouseListener());
 		btnaceptar.setBounds(162, 351, 147, 23);
@@ -152,29 +157,43 @@ public class Registro extends JFrame {
 		}
 	}
 
+
+	
+	
+
 	/*
 	 * crea un objeto de persona o policia segun lo que hemos elegido.
 	 */
 	private class BtnNewButtonMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
+			String patdni = "dddddddd[A-Z]";
+	        String pat2dni = "[A-Z]ddddddd[A-Z]";
+	        boolean concuerda=false;
 
-			if (!(txtnombre.getText().equalsIgnoreCase("") || txtnombre.getText() == null)
-					&& !(txtdni.getText().equalsIgnoreCase("") || txtdni.getText() == null)) {
+	        if (Pattern.matches(patdni, txtdni.getText()) || Pattern.matches(pat2dni, txtdni.getText())) {
+	            concuerda = true;
+	        }
+
+			if ((!txtnombre.getText().equalsIgnoreCase("") || txtnombre.getText() != null)
+					&& (!txtdni.getText().equalsIgnoreCase("") || txtdni.getText() != null) && (concuerda)) {
 				if (rdbtnpolicia.isSelected()) {
 					Policia poli = new Policia(txtnombre.getText(), txtdni.getText(), ("P-" + txtdni.getText()));
 					vPersona.add(poli);
-					IOdatos.guardarPers(vPersona);
+					JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
+					IoDatos.guardarPers(vPersona);
 				} else {
 					Ciudadano ciu = new Ciudadano(txtnombre.getText(), txtdni.getText(), ("C-" + txtdni.getText()));
 					vPersona.add(ciu);
-					IOdatos.guardarPers(vPersona);
+					IoDatos.guardarPers(vPersona);
+					JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
 				}
 				Login l = new Login();
 				l.setVisible(true);
 				dispose();
 			}
+			}
 
-		}
+		
 	}
 }

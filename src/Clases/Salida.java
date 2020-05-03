@@ -1,5 +1,10 @@
 package Clases;
-
+/**
+ * 
+ * @author Ivan Torres
+ * @version 1.0
+ *
+ */
 import java.io.Serializable;
 
 public class Salida implements Serializable {

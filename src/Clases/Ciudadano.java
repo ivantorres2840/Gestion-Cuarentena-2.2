@@ -1,5 +1,10 @@
 package Clases;
-
+/**
+ * 
+ * @author Ivan Torres
+ * @version 1.0
+ *
+ */
 public final class Ciudadano extends Persona{
 	private String nCiudadano;
 

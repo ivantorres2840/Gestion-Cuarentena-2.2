@@ -1,5 +1,10 @@
 package Clases;
-
+/**
+ * 
+ * @author Ivan Torres
+ * @version 1.0
+ *
+ */
 public final class Policia extends Persona{
 	private String nPlaca;
 

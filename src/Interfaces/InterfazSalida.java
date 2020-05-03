@@ -1,4 +1,4 @@
-package Interfaces;
+package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JComboBox;
@@ -24,14 +25,21 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
-
+import Clases.*;
+/**
+ * 
+ * @author Ivan Torres
+ * @version2.2
+ * 
+ *
+ */
 public class InterfazSalida extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultComboBoxModel modeloComboBox = new DefaultComboBoxModel();
 	private String dni;
-	//private ArrayList<Salida> vSalida;
-	//private ArrayList<Persona> vPersona;
+	private ArrayList<Salida> vSalida;
+	private ArrayList<Persona> vPersona;
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +61,7 @@ public class InterfazSalida extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfazSalida(String dni) {
-		//vPersona = IOdatos.cargarpersona();
+		vPersona = IoDatos.cargarpersona();
 		this.dni = dni;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -144,6 +152,10 @@ public class InterfazSalida extends JFrame {
 		textAreamotivos.setVisible(false);
 		lblotros.setVisible(false);
 		
+		/**
+		 * pone visible el text area de los motivos y otros
+		 */
+		
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (modeloComboBox.getSelectedItem().equals("Otros")) {
@@ -156,24 +168,28 @@ public class InterfazSalida extends JFrame {
 			}
 		});
 		
-		//vSalida = IOdatos.cargarSalida();
+		vSalida = IoDatos.cargarSalida();
 
-		//String salidas = "";
-		//for (Salidas s : vSalida) {
-		//	if (s.getdni().equalsIgnoreCase(dni)) {
-		//		salidas += s.toString() + "\n";
-		//	}
-		//}
-	//	textAreasalidas.setText(salidas);
-		
+		String salidas = "";
+		for (Salida s : vSalida) {
+			if (s.getdni().equalsIgnoreCase(dni)) {
+				salidas += s.getMotivos()+" "+s.getHora()+" "+s.getFecha() + "\n";
+			}
+		}
+		textAreasalidas.setText(salidas);
+		/**
+		 * boton que vuelve a la interfaz de login
+		 */
 		btnvolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	Login l = new Login();
-			//	l.setVisible(true);
-			//	dispose();
+				Login l = new Login();
+				l.setVisible(true);
+				dispose();
 			}
 		});
-		
+		/**
+		 * boton que se encarga se realizar correctamente la reserva
+		 */
 		btnreserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String fecha="";
@@ -199,15 +215,15 @@ public class InterfazSalida extends JFrame {
 				}
 				
 				if (comboBox.getSelectedItem().equals("Otros")) {
-					//Salidas s = new Salidas(textAreamotivos.getText(), fecha,hora_concreta , dni);
-			//		JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
-					//vSalida.add(s);
-					//IOdatos.guardarSal(vSalida);
+					Salida s = new Salida(textAreamotivos.getText(), fecha,hora_concreta , dni);
+					JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
+					vSalida.add(s);
+					IoDatos.guardarSal(vSalida);
 				} else {
-					//Salidas c = new Salidas(comboBox.getSelectedItem().toString(), fecha,	hora_concreta, dni);
-			//		JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
-			//		vSalida.add(c);
-			//		IOdatos.guardarSal(vSalida);
+					Salida c = new Salida(comboBox.getSelectedItem().toString(), fecha,	hora_concreta, dni);
+					JOptionPane.showMessageDialog(null, "Se Ha Guardado Con Exito", "Guardado Completado", 1);
+					vSalida.add(c);
+					IoDatos.guardarSal(vSalida);
 				}
 				
 			}

@@ -1,4 +1,4 @@
-package Interfaces;
+package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,8 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import IoDatos.IOdatos;
-import motivos.Salidas;
+//import IoDatos.IOdatos;
+//import motivos.Salidas;
+
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ import java.util.Calendar;
 import java.util.regex.Pattern;
 import javax.swing.event.ChangeListener;
 
-import Individuos.Persona;
+//import Individuos.Persona;
 
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +39,16 @@ import java.awt.event.ActionEvent;
 import com.toedter.calendar.JCalendar;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import Clases.*;
 
+
+
+/**
+ * 
+ * @author DM
+ * @version 2.2
+ *
+ */
 public class InterfazPolicia extends JFrame {
 
 	private JPanel contentPane;
@@ -65,24 +75,24 @@ public class InterfazPolicia extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InterfazPolicia frame = new InterfazPolicia();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					InterfazPolicia frame = new InterfazPolicia();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
 	public InterfazPolicia() {
-		vSalidas = IOdatos.cargarSalida();
+		vSalidas = IoDatos.cargarSalida();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 810);
@@ -179,7 +189,10 @@ public class InterfazPolicia extends JFrame {
 
 		iniciarModelo();
 	}
-
+/**
+ *Inica el modelo
+ *Falta actualizar
+ */
 	private void iniciarModelo() {
 		cbList.removeAllElements();
 		for (Salida s : vSalidas) {
@@ -187,7 +200,11 @@ public class InterfazPolicia extends JFrame {
 		}
 
 	}
-
+/**
+ * 
+ * @param todos
+ * actualiza el modelo dependiendo de las criterio seleccionados utlizados
+ */
 	private void actualizarModelo(boolean todos) {
 		cbList.removeAllElements();
 		String dni = "";
@@ -226,13 +243,13 @@ public class InterfazPolicia extends JFrame {
 		if (hora < 0) {
 			if (concuerda) {
 				for (Salida sal : vSalidas) {
-					if (sal.getdni().equalsIgnoreCase(dni) && sal.getFecha().equalsIgnoreCase(dia)) {
+					if (sal.getdni().equalsIgnoreCase(dni) && sal.getFecha().equalsIgnoreCase(fecha)) {
 						cbList.addElement(sal.getdni());
 					}
 				}
 			} else {
 				for (Salida sal : vSalidas) {
-					if (sal.getFecha().equalsIgnoreCase(dia)) {
+					if (sal.getFecha().equalsIgnoreCase(fecha)) {
 						cbList.addElement(sal.getdni());
 					}
 				}
@@ -241,7 +258,7 @@ public class InterfazPolicia extends JFrame {
 		} else {
 			if (concuerda) {
 				for (Salida sal : vSalidas) {
-					if (sal.getdni().equalsIgnoreCase(dni) && sal.getFecha().equalsIgnoreCase(dia)
+					if (sal.getdni().equalsIgnoreCase(dni) && sal.getFecha().equalsIgnoreCase(fecha)
 							&& sal.getHora().equalsIgnoreCase(hora_concreta)) {
 
 						cbList.addElement(sal.getdni());
@@ -249,7 +266,7 @@ public class InterfazPolicia extends JFrame {
 				}
 			} else {
 				for (Salida sal : vSalidas) {
-					if (sal.getFecha().equalsIgnoreCase(dia)
+					if (sal.getFecha().equalsIgnoreCase(fecha)
 							&& sal.getHora().equalsIgnoreCase(hora_concreta)) {
 
 						cbList.addElement(sal.getdni());
@@ -260,7 +277,11 @@ public class InterfazPolicia extends JFrame {
 		}
 
 	}
-
+/**
+ * 
+ * criterio actualizacion 
+ *
+ */
 	private class TextField_dniKeyListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {
@@ -282,7 +303,11 @@ public class InterfazPolicia extends JFrame {
 //
 //		}
 //	}
-
+/**
+ * 
+ * vuelve a la interfaz login
+ *
+ */
 	private class Btn_atrasMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -292,6 +317,11 @@ public class InterfazPolicia extends JFrame {
 		}
 	}
 
+	/**
+	 * 
+	 * marca la salida como revisada
+	 *
+	 */
 	private class Btn_revisarMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -302,6 +332,11 @@ public class InterfazPolicia extends JFrame {
 		}
 
 	}
+	/**
+	 * 
+	 * marca la salida como revisada y multada
+	 *
+	 */
 
 	private class Btn_multarMouseListener extends MouseAdapter {
 		@Override
@@ -313,6 +348,12 @@ public class InterfazPolicia extends JFrame {
 
 		}
 	}
+	
+	/**
+	 * 
+	 * permite mostrar todos o los que no estan revisados
+	 *
+	 */
 
 	private class Tglbtn_mostrartodoChangeListener implements ChangeListener {
 		public void stateChanged(ChangeEvent e) {
@@ -335,6 +376,14 @@ public class InterfazPolicia extends JFrame {
 //		}
 //
 //	}
+	
+	
+	/**
+	 * 
+	 * actualiza el textarea dependiendo del elemento seleccionado
+	 *
+	 */
+	
 	private class ComboBox_personasMouseListener extends MouseAdapter {
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
@@ -366,7 +415,7 @@ public class InterfazPolicia extends JFrame {
 			if (hora < 0) {
 				
 					for (Salida sal : vSalidas) {
-						if (sal.getdni().equalsIgnoreCase(salid) && sal.getFecha().equalsIgnoreCase(dia)) {
+						if (sal.getdni().equalsIgnoreCase(salid) && sal.getFecha().equalsIgnoreCase(fecha)) {
 							textArea_infoCiudadano.setText(sal.toString());
 						}
 					}
@@ -375,7 +424,7 @@ public class InterfazPolicia extends JFrame {
 			} else {
 				
 					for (Salida sal : vSalidas) {
-						if (sal.getdni().equalsIgnoreCase(salid) && sal.getFecha().equalsIgnoreCase(dia)
+						if (sal.getdni().equalsIgnoreCase(salid) && sal.getFecha().equalsIgnoreCase(fecha)
 								&& sal.getHora().equalsIgnoreCase(hora_concreta)) {
 
 							textArea_infoCiudadano.setText(sal.toString());

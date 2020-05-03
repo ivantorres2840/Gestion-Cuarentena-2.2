@@ -14,15 +14,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
-import Individuos.Ciudadano;
-import IoDatos.IOdatos;
-import interfaz.InterfazPolicia;
-import interfaz.InterfazSalida;
-import interfaz.Registro;
-import interfaz.Login.BtnNewButtonMouseListener;
-import interfaz.Login.BtnNewButton_1MouseListener;
+import com.toedter.calendar.JCalendar;
+//import Individuos.Ciudadano;
+//import IoDatos.IOdatos;
+//import interfaz.InterfazPolicia;
+//import interfaz.InterfazSalida;
+//import interfaz.Registro;
+//import interfaz.Login.BtnNewButtonMouseListener;
+//import interfaz.Login.BtnNewButton_1MouseListener;
+import Clases.*;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+
+/**
+ * 
+ * @author Raul Manauta
+ *
+ */
+
 
 public class Login extends JFrame {
 
@@ -51,9 +63,10 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
-		vPersona = IOdatos.cargarpersona();
+		//para la siguiente version implemetar rutas con las imagenes
+//		setIconImage(Toolkit.getDefaultToolkit()
+//				.getImage("C:\\Users\\Usuario\\Desktop\\TODA CUARENTENA\\cuarentena\\60-espana-sin-escudo_400px.jpg"));
+		vPersona = IoDatos.cargarpersona();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 351, 509);
 		contentPane = new JPanel();
@@ -124,12 +137,19 @@ public class Login extends JFrame {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * Boton que te manda a la interfaz salida o a la interfaz policia dependeiendo de si eres una persona o un policia
+	 *
+	 */
+	
 	private class BtnNewButtonMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 
 			for (int i = 0; i < vPersona.size(); i++) {
-				if (vPersona.get(i).getDni().contentEquals(txtdni.getText())) {
+				if (!vPersona.get(i).getDni().contentEquals(txtdni.getText())) {
 
 					if (vPersona.get(i) instanceof Ciudadano) {
 						InterfazSalida itf = new InterfazSalida(txtdni.getText());
