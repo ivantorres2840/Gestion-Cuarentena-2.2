@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -25,6 +26,9 @@ public class InterfazSalida extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultComboBoxModel modeloComboBox = new DefaultComboBoxModel();
+	private String dni;
+	//private ArrayList<Salidas> vSalida;
+	//private ArrayList<Persona> vPersona;
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +36,8 @@ public class InterfazSalida extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfazSalida frame = new InterfazSalida();
+					String dni=null;
+					InterfazSalida frame = new InterfazSalida(dni);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +49,10 @@ public class InterfazSalida extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InterfazSalida() {
+	public InterfazSalida(String dni) {
+		//vPersona = IOdatos.cargarpersona();
+		this.dni = dni;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 810);
 		contentPane = new JPanel();
@@ -52,9 +60,9 @@ public class InterfazSalida extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JCalendar calendar = new JCalendar();
-		calendar.setBounds(25, 294, 212, 153);
-		contentPane.add(calendar);
+		JCalendar calendario = new JCalendar();
+		calendario.setBounds(25, 294, 212, 153);
+		contentPane.add(calendario);
 		
 		JTextArea textAreasalidas = new JTextArea();
 		textAreasalidas.setEditable(false);
@@ -67,7 +75,7 @@ public class InterfazSalida extends JFrame {
 		contentPane.add(lblsalidas);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(299, 510, 154, 22);
+		comboBox.setBounds(270, 510, 183, 22);
 
 		modeloComboBox = new DefaultComboBoxModel();
 		comboBox.setModel(modeloComboBox);
@@ -93,15 +101,15 @@ public class InterfazSalida extends JFrame {
 		lblminutos.setBounds(358, 294, 60, 14);
 		contentPane.add(lblminutos);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinner.setBounds(305, 319, 30, 20);
-		contentPane.add(spinner);
+		JSpinner spinner_hora = new JSpinner();
+		spinner_hora.setModel(new SpinnerNumberModel(0, 0, 23, 1));
+		spinner_hora.setBounds(305, 319, 30, 20);
+		contentPane.add(spinner_hora);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(0, 0, 59, 1));
-		spinner_1.setBounds(378, 319, 30, 20);
-		contentPane.add(spinner_1);
+		JSpinner spinner_minutos = new JSpinner();
+		spinner_minutos.setModel(new SpinnerNumberModel(0, 0, 59, 1));
+		spinner_minutos.setBounds(378, 319, 30, 20);
+		contentPane.add(spinner_minutos);
 		
 		JTextArea textAreamotivos = new JTextArea();
 		textAreamotivos.setBounds(25, 566, 428, 145);
@@ -112,15 +120,17 @@ public class InterfazSalida extends JFrame {
 		lblotros.setBounds(29, 541, 48, 14);
 		contentPane.add(lblotros);
 		
-		JButton btnNewButton = new JButton("Reservar");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton.setBounds(358, 737, 95, 23);
-		contentPane.add(btnNewButton);
+		JButton btnreserva = new JButton("Reservar");
+
+		btnreserva.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnreserva.setBounds(358, 737, 95, 23);
+		contentPane.add(btnreserva);
 		
-		JButton btnNewButton_1 = new JButton("Volver");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_1.setBounds(25, 738, 89, 23);
-		contentPane.add(btnNewButton_1);
+		JButton btnvolver = new JButton("Volver");
+
+		btnvolver.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnvolver.setBounds(25, 738, 89, 23);
+		contentPane.add(btnvolver);
 		
 		modeloComboBox.addElement("Sacar a pasear al perro");
 		modeloComboBox.addElement("Ir al medico de Urgencias");
@@ -141,6 +151,54 @@ public class InterfazSalida extends JFrame {
 			}
 		});
 		
+		//vSalida = IOdatos.cargarSalida();
+
+		//String salidas = "";
+		//for (Salidas s : vSalida) {
+		//	if (s.getdni().equalsIgnoreCase(dni)) {
+		//		salidas += s.toString() + "\n";
+		//	}
+		//}
+	//	textAreasalidas.setText(salidas);
+		
+		btnvolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			//	Login l = new Login();
+			//	l.setVisible(true);
+			//	dispose();
+			}
+		});
+		
+		btnreserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String fecha="";
+				int dia= calendario.getCalendar().get(Calendar.DAY_OF_MONTH);
+				int mes= calendario.getCalendar().get(Calendar.MONTH);
+				int año= calendario.getCalendar().get(Calendar.YEAR);
+				fecha=dia+"/"+mes+"/"+año;
+				
+				int hora= (int) spinner_hora.getValue();
+				int minutos= (int) spinner_minutos.getValue();
+				String hora_concreta="";
+				
+				if(hora<10 || hora>=0) {
+					hora_concreta="0"+hora+":";
+				}else if (hora!=1) {
+					hora_concreta=hora+":";
+				}
+				
+				if(minutos<10 || minutos>=0) {
+					hora_concreta+="0"+minutos+":";
+				}else {
+					hora_concreta+=minutos+"";
+				}
+				
+				
+				System.out.println(hora_concreta);
+				System.out.println(fecha);
+				
+			}
+		});
 		
 		
 		
